@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plasma — your skills, energized</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      .plasma-boot-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          radial-gradient(circle at 50% 42%, rgba(55, 217, 255, 0.13), transparent 34%),
+          rgba(5, 6, 7, 0.92);
+        opacity: 1;
+        transition: opacity 240ms ease, visibility 240ms ease;
+      }
+
+      .plasma-boot-loader.is-hiding {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .plasma-boot-card {
+        display: grid;
+        justify-items: center;
+        gap: 16px;
+        min-width: min(320px, calc(100vw - 48px));
+        padding: 30px 34px 28px;
+        border: 1px solid rgba(140, 244, 255, 0.18);
+        border-radius: 14px;
+        background: rgba(12, 16, 22, 0.9);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.46), 0 0 42px rgba(55, 217, 255, 0.12);
+        color: #eafcff;
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+      }
+
+      .plasma-boot-orb {
+        position: relative;
+        width: 62px;
+        height: 62px;
+        border-radius: 999px;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(140, 244, 255, 0.16), transparent 58%),
+          radial-gradient(circle at 50% 50%, rgba(8, 14, 20, 0.86), transparent 66%);
+        filter: drop-shadow(0 0 18px rgba(55, 217, 255, 0.22));
+        animation: plasmaBootSpin 3.6s linear infinite;
+      }
+
+      .plasma-boot-dot {
+        position: absolute;
+        left: calc(50% + var(--x));
+        top: calc(50% + var(--y));
+        width: var(--size);
+        height: var(--size);
+        border-radius: 999px;
+        background: radial-gradient(circle at 35% 32%, #fff, #bffcff 42%, #37d9ff 100%);
+        box-shadow: 0 0 12px rgba(55, 217, 255, 0.52);
+        transform: translate(-50%, -50%) scale(0.78);
+        animation: plasmaBootPulse 1.6s ease-in-out infinite;
+        animation-delay: var(--delay);
+      }
+
+      .plasma-boot-title {
+        margin: 2px 0 0;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .plasma-boot-copy {
+        margin: -6px 0 0;
+        color: rgba(234, 252, 255, 0.62);
+        font-size: 0.82rem;
+      }
+
+      @keyframes plasmaBootSpin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes plasmaBootPulse {
+        0%,
+        100% {
+          opacity: 0.42;
+          transform: translate(-50%, -50%) scale(0.78);
+        }
+
+        45% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.2);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .plasma-boot-orb,
+        .plasma-boot-dot {
+          animation: none;
+        }
+      }
+    </style>
+    <script>
+      window.__PLASMA_BOOT_STARTED_AT__ = Date.now();
+    </script>
+  </head>
+  <body>
+    <div
+      id="plasma-boot-loader"
+      class="plasma-boot-loader"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading Plasma"
+    >
+      <div class="plasma-boot-card">
+        <div class="plasma-boot-orb" aria-hidden="true">
+          <span class="plasma-boot-dot" style="--x: 0px; --y: -24px; --size: 7px; --delay: -0.05s"></span>
+          <span class="plasma-boot-dot" style="--x: 14px; --y: -19px; --size: 5px; --delay: -0.18s"></span>
+          <span class="plasma-boot-dot" style="--x: 24px; --y: -7px; --size: 8px; --delay: -0.31s"></span>
+          <span class="plasma-boot-dot" style="--x: 22px; --y: 9px; --size: 5px; --delay: -0.44s"></span>
+          <span class="plasma-boot-dot" style="--x: 11px; --y: 22px; --size: 7px; --delay: -0.57s"></span>
+          <span class="plasma-boot-dot" style="--x: -5px; --y: 25px; --size: 5px; --delay: -0.7s"></span>
+          <span class="plasma-boot-dot" style="--x: -20px; --y: 14px; --size: 8px; --delay: -0.83s"></span>
+          <span class="plasma-boot-dot" style="--x: -25px; --y: -2px; --size: 5px; --delay: -0.96s"></span>
+          <span class="plasma-boot-dot" style="--x: -17px; --y: -17px; --size: 7px; --delay: -1.09s"></span>
+        </div>
+        <p class="plasma-boot-title">Loading Plasma</p>
+        <p class="plasma-boot-copy">Mapping your local skill graph</p>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

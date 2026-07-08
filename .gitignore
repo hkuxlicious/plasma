@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.vite/
+
+# Local/generated runtime data
+src/data/generated/
+output/
+server-*.log
+npm-debug.log*
+
+# Local agent/editor state
+.claude/
+.agents/
+.codex/
+
+# Local environment files
+.env
+.env.*
+!.env.example

@@ -1,0 +1,49 @@
+{
+  "name": "plasma-skill-dashboard",
+  "version": "0.1.0",
+  "description": "Local-first visual dashboard for exploring and activating installed AI agent skills.",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hkuxlicious/plasma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hkuxlicious/plasma/issues"
+  },
+  "homepage": "https://github.com/hkuxlicious/plasma#readme",
+  "keywords": [
+    "ai-agents",
+    "codex",
+    "skills",
+    "dashboard",
+    "local-first",
+    "knowledge-graph",
+    "vite",
+    "react"
+  ],
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/generate-skills.test.mjs",
+    "generate:skills": "node scripts/generate-skills.mjs",
+    "generate:usage": "node scripts/scan-usage.mjs",
+    "generate:usage:scan": "node scripts/scan-usage.mjs --scan",
+    "generate": "npm run generate:skills && npm run generate:usage",
+    "generate:local": "npm run generate:skills && npm run generate:usage:scan",
+    "predev": "npm run generate",
+    "dev": "vite --host 127.0.0.1",
+    "prebuild": "npm run generate",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "serve": "node scripts/serve-dist.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "d3-force": "^3.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.5.4",
+    "vite": "^7.0.0"
+  }
+}
